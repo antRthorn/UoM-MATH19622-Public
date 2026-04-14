@@ -209,13 +209,13 @@ In this block we will introduce the following concepts:
         \node at (2, 1) {$B$};
 
         % --- Step 2: Shade A ---
-        \only<presentation:2-| article>{
+        \only<beamer:2-| article | handout:1>{
             % Custom color for A from previous examples
             \fill[blue, opacity=0.3] (Acoord) circle (\r);
         }
 
         % --- Step 3: Shade B ---
-        \only<presentation:3-4| article>{
+        \only<beamer:3-4| article | handout:1>{
             % Custom color for B
             \fill[red, opacity=0.3] (Bcoord) circle (\r);
             
@@ -227,12 +227,12 @@ In this block we will introduce the following concepts:
         }
 
         % --- Step 4: Visualise the overlap to subtract ---
-        \only<presentation:4>{
+        \only<beamer:4 | handout:1>{
             \draw[<-] (0,0) -- (1, -1.2) node[below] {\alert{Counted Twice!}};
         }
 
         % --- Step 5: Final Union (Hidden in Article mode) ---
-        \only<presentation:5 | article:0>{
+        \only<beamer:5 | article:0 | handout:2>{
             % Shading the exact union smoothly
             \begin{scope}
                 \fill[purple!50!white] (Acoord) circle (\r);

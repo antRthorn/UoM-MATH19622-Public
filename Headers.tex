@@ -118,7 +118,7 @@
   \begin{alertblock}{Recipe (#1)}}{\end{alertblock}}
 
 %Remove the second well items which can look like minuses
-\renewcommand{\labelitemii}{$\circ$}
+\only<article>{\renewcommand{\labelitemii}{$\circ$}}
 
 %Add a solution continued enviroment to stop the renumber problem
 \newtheorem*{solutioncont}{\only<presentation>{Solution (Continued)}}
