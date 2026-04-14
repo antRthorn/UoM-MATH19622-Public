@@ -336,9 +336,11 @@ Scenario:
                 This represents a physical, countable group of existing items. In EEE, this usually relates to \textbf{Quality Assurance (QA)} and hardware manufacturing. For example, characterising a specific batch of 500 resistors to ensure they meet a 5\% tolerance threshold. The goal is to evaluate the present state of this specific batch.
             }
         \end{block}
+        
+        \pause
 
         \column{0.48\textwidth}
-        \begin{block}<2->{\only<presentation>{2. }Ongoing Process}
+        \begin{block}{\only<presentation>{2.} Ongoing Process}
             \only<presentation>{
                 A system generating data over time.
                 \begin{itemize}
@@ -557,13 +559,13 @@ Scenario:
         \end{itemize}
         \end{solution}
         \vspace{0.3cm}
-        \begin{solution}
+        \begin{solutioncont}
         \textbf{Part 2: Interpretation}
         \begin{itemize}
             \item \textbf{Mean (50.6 ms):} Heavily skewed by the single outlier (200 ms). This metric falsely suggests the entire network is slow, which is only true for 1 packet (perhaps due to a temporary buffer spike).
             \item \textbf{Median (14 ms):} Gives a much more accurate representation of the \lq typical\rq\ performance the user will experience.
         \end{itemize}
-    \end{solution}
+    \end{solutioncont}
     
     \begin{block}{Key Takeaway}
         Always look at the data distribution. If the data is skewed (like network latency, income, or component lifespans often are), the \textbf{median} is a much safer measure of the centre than the \textbf{mean}.

@@ -4,14 +4,11 @@
 
 
 
-\section{Discrete Probability Distributions}
+\section{Introduction}
 
 \begin{frame}{From Events to Random Variables}
-    In the previous lecture, we looked at the probability of specific, single events (like drawing a red sock). In engineering, we usually want to model a whole system of events mathematically. 
+\only<article>{ In the previous block, we looked at the probability of specific, single events (like drawing a red sock). In engineering, we usually want to model a whole system of events mathematically.  To do this, we use \textbf{Random Variables}.}
     
-    To do this, we use \textbf{Random Variables}.
-    
-    \vspace{0.3cm}
     \begin{definition}[Discrete Random Variable]
         A discrete random variable (usually denoted by a capital letter like $X$) is a function that assigns a \textbf{numerical value} to each outcome in a sample space. It can only take on a countable number of distinct values (e.g., $0, 1, 2, 3\dots$).
     \end{definition}
@@ -54,7 +51,7 @@
     \end{solution}
 \end{frame}
 
-\subsection{The Binomial Distribution}
+\section{The Binomial Distribution}
 
 \begin{frame}[allowframebreaks]{The Binomial Distribution}
     The Binomial Distribution is the ultimate tool for Quality Assurance engineers. It models the number of \textbf{successes} in a fixed number of \textbf{independent trials}.
@@ -115,7 +112,7 @@
     
     \framebreak
     
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{Engineering Conclusion:}
         \begin{itemize}
             \item There is a 4.39\% chance of getting exactly 8 heads from a perfectly fair coin just by luck.
@@ -125,8 +122,8 @@
         \end{itemize}
         
         \vspace{0.4cm}
-        \textit{(Note: We will learn exactly where to draw the "impossible" line when we cover Hypothesis Testing in Lecture 4!)}
-    \end{solution}
+        \textit{(Note: We will learn exactly where to draw the \lq impossible\rq\ line when we cover Hypothesis Testing in Block 5!)}
+    \end{solutioncont}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Engineering Example: Quality Control}
@@ -157,7 +154,7 @@
     
     \framebreak
     
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{2. Exactly 2 defective ($k=2$):}
         \begin{align*}
             P(X=2) &= \binom{10}{2} (0.05)^2 (0.95)^8 \\
@@ -165,7 +162,7 @@
                    &= 45 \times 0.0025 \times 0.6634 \\
                    &= \mathbf{0.0746} \text{ (or 7.46\%)}
         \end{align*}
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 \begin{frame}{Mean and Variance of a Binomial Model}
@@ -197,10 +194,22 @@
     \insertcode{Our 8 heads python style}{code/BinomialDistribution.py}
 
     \textit{Notice that Python gives us the exact same 4.39\% we calculated by hand!}
+    
+    \only<article>{
+    When using the \texttt{scipy.stats} library to calculate discrete probabilities, the \texttt{pmf} (Probability Mass Function) command requires three core arguments to map exactly to our mathematical formula:
+    
+    \begin{description}
+        \item[\texttt{k = 8}:] The target number of \lq successes\rq\ you want to evaluate (often denoted as $x$ in our mathematical formulas). In this case, exactly 8 heads.
+        \item[\texttt{n = 10}:] The total number of independent trials. Here, we are flipping the coin 10 times.
+        \item[\texttt{p = 0.5}:] The probability of success on a single, isolated trial (a 50\% chance of getting heads on any given flip).
+    \end{description}
+    
+If you ever need to find the cumulative probability—such as the probability of getting \textbf{8 or fewer} heads ($P(X \leq 8)$)—you simply swap \texttt{.pmf} for \texttt{.cdf} (Cumulative Distribution Function), leaving the three arguments exactly the same.
+}
 \end{frame}
 
 
-\subsection{The Poisson Distribution}
+\section{The Poisson Distribution}
 
 \begin{frame}{The Poisson Distribution}
     While the Binomial distribution counts successes in a \textit{fixed number of trials}, the \textbf{Poisson Distribution} counts events that occur randomly over a \textbf{continuous interval} (like time, area, or volume).
@@ -250,7 +259,7 @@
     
     \framebreak
     
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{2. At most 2 drops ($X \leq 2$):}
         \vspace{0.1cm} \\
         This means 0 drops, 1 drop, \textbf{or} 2 drops. We must add the probabilities!
@@ -261,7 +270,7 @@
                         &= 0.1353 \times 5 \\
                         &= \mathbf{0.6765} \text{ (or 67.65\%)}
         \end{align*}
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 \begin{frame}{Mean and Variance of a Poisson Model}
@@ -278,7 +287,7 @@
 
     \pause \vspace{0.3cm}
     \begin{alertblock}{The Mathematical Oddity}
-        In a Poisson distribution, the mean is \textbf{exactly equal} to the variance! As the average rate of events increases, the uncertainty (spread) around that rate increases at the exact same pace.
+        In a Poisson distribution, the mean is \textbf{exactly equal} to the variance. As the average rate of events increases, the uncertainty (spread) around that rate increases at the exact same pace.
     \end{alertblock}
 \end{frame}
 
@@ -292,9 +301,27 @@
     Instead of manually adding $P(X=0) + P(X=1) + P(X=2)$, we can use the Cumulative Distribution Function (\texttt{cdf}) to add them automatically!
  
  \insertcode{Poisson Example}{code/Poisson.py}
+ 
+ \only<article>{
+    When modelling the Poisson distribution using \texttt{scipy.stats}, the syntax is very similar to the Binomial setup, but the arguments change to reflect the Poisson parameters:
+    
+    \begin{description}
+        \item[\texttt{k}:] The specific number of events you are checking (e.g., \texttt{0} drops, or up to \texttt{2} drops). This corresponds to $x$ in our mathematical formulas.
+        \item[\texttt{mu} ($\lambda$):] The expected average rate of occurrence. In this example, the historical average is \texttt{2} drops. \textit{Note: SciPy uses the argument name \texttt{mu} instead of $\lambda$ because \texttt{lambda} is a reserved mathematical keyword in the Python language!}
+    \end{description}
+    
+        \textbf{Which function do you use?}
+    \begin{itemize}
+        \item \textbf{\texttt{.pmf(0, 2)}:} The \textbf{Probability Mass Function} calculates the probability of getting \textit{exactly} $k=0$ drops.
+        \item \textbf{\texttt{.cdf(2, 2)}:} The \textbf{Cumulative Distribution Function} calculates the probability of getting \textit{up to and including} $k=2$ drops. It automatically does the heavy lifting of summing $P(X=0) + P(X=1) + P(X=2)$.
+    \end{itemize}
+
+    \textit{Comment on Output Formatting:} The \texttt{f"\{p\_0:.4f\}"} syntax in the print statement is a Python f-string. The \texttt{:.4f} command tells Python to automatically round the output to exactly \textbf{4 decimal places} (floating-point numbers), which is the standard reporting format for probabilities.
+}
   
 \end{frame}
 
+\section{Summary: Discrete Distributions}
 \begin{frame}{Summary: Discrete Distributions}
     \small
     \begin{itemize}
@@ -322,7 +349,7 @@
     \only<presentation>{\pause \vspace{-0.3cm}}
 
     \begin{block}{Next Up: Continuous Probability Distributions}
-        \only<article>{So far, we have only counted discrete \lq events\rq\ (like 3 broken bulbs or 2 dropped packets).} But what happens when our random variable is a continuous physical measurement\only<article>{, like the exact voltage of a battery or the thermal noise in a circuit}? \only<article>{Next, we introduce the famous Normal Curve!}
+        \only<article>{So far, we have only counted discrete \lq events\rq\ (like 3 broken bulbs or 2 dropped packets).} But what happens when our random variable is a continuous physical measurement\only<article>{, like the exact voltage of a battery or the thermal noise in a circuit}? \only<article>{Next, we introduce the famous Normal Curve.}
     \end{block}
 \end{frame}
 

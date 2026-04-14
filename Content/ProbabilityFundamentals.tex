@@ -1,6 +1,35 @@
 %!TEX root = Reader.tex
 \part{Probability Fundamentals}
 
+\begin{frame}<presentation>{Recap: Descriptive Statistics}
+    Last week, we learned how to summarise historical data by separating the \textbf{Signal} from the \textbf{Noise}.
+
+    \vspace{0.2cm}
+    \begin{columns}[t]
+        \column{0.48\textwidth}
+        \begin{block}{1. Location (The Signal)}
+            Where is the center of the data?
+            \begin{itemize}
+                \item \textbf{Mean:} The mathematical center.
+                \item \textbf{Median:} The robust middle (ignores outliers).
+            \end{itemize}
+        \end{block}
+
+        \column{0.48\textwidth}
+        \begin{block}{2. Dispersion (The Noise)}
+            How spread out is the data?
+            \begin{itemize}
+                \item \textbf{Variance/Std Dev:} The mathematical spread (remember $n-1$ for samples!).
+                \item \textbf{IQR:} The robust middle 50\%.
+            \end{itemize}
+        \end{block}
+    \end{columns}
+
+    \vspace{0.4cm}
+    \structure{The Transition:} 
+    Descriptive statistics let us understand the \textbf{past}. Today, we begin using Probability to predict the \textbf{future}.
+\end{frame}
+
 % --- Lecture 3 ---
 %\begin{frame}{Lecture 3: Rules of Probability}
 %    \small
@@ -23,15 +52,17 @@
 %    \end{itemize}
 %\end{frame}
 
-\section{Probability Fundamentals}
+\section{Outline of next block}
 
 \only<article>{
-    Welcome to Module 2. In the previous module, we learned how to mathematically describe data that we have already collected (the past). Now, we shift our focus to predicting the likelihood of events before they happen (the future). 
+    Welcome to Block 2. In the previous block, we learned how to mathematically describe data that we have already collected (the past). Now, we shift our focus to predicting the likelihood of events before they happen (the future). 
     
-    Probability forms the absolute mathematical foundation of risk assessment, reliability engineering, signal processing, and system design. In this lecture, we will establish the fundamental rules and notation that govern random events.
+    Probability forms the absolute mathematical foundation of risk assessment, reliability engineering, signal processing, and system design. In this block, we will establish the fundamental rules and notation that govern random events.
+    
+In this block we will introduce the following concepts:
 }
 
-\section{Outline of next part}
+
 % --- Lecture 3 Outline ---
 \begin{frame}{Outline}
 
@@ -59,10 +90,6 @@
             \end{itemize}
     \end{itemize}
     
-    \only<article>{
-        \vspace{0.3cm}
-        \textit{Pre-reading Note: Students are expected to review the difference between \textbf{Classical} (theoretical) and \textbf{Empirical} (observational) probability in the course textbook prior to engaging with this material.}
-    }
 \end{frame}
 
 \section{Probability Fundamentals}
@@ -70,46 +97,9 @@
 
 
 \only<article>{
-    Welcome to Module 2. In the previous module, we learned how to mathematically describe data that we have already collected (the past). Now, we shift our focus to predicting the likelihood of events before they happen (the future). 
-    
-    Probability forms the absolute mathematical foundation of risk assessment, reliability engineering, signal processing, and system design. In this lecture, we will establish the fundamental rules and notation that govern random events.
+    Probability forms the absolute mathematical foundation of risk assessment, reliability engineering, signal processing, and system design. In this part, we will establish the fundamental rules and notation that govern random events.
 }
 
-% --- Lecture 3 Outline ---
-\begin{frame}
-\frametitle{Outline}
-    \only<article>{
-        \textbf{Lecture Outline:}
-    }
-    
-    \begin{itemize}
-        \item \textbf{Definitions \& Notation}
-            \begin{itemize}
-                \item Sample Space ($S$), Events, Complement ($P(A') = 1 - P(A)$).
-            \end{itemize}
-            
-        \only<presentation>{\vspace{0.3cm}}
-            
-        \item \textbf{The Addition Law (Unions)}
-            \begin{itemize}
-                \item Mutually Exclusive: $P(A \cup B) = P(A) + P(B)$.
-                \item General Rule: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
-            \end{itemize}
-            
-        \only<presentation>{\vspace{0.3cm}}
-            
-        \item \textbf{The Multiplication Law (Intersections)}
-            \begin{itemize}
-                \item Independent Events: $P(A \cap B) = P(A) \times P(B)$.
-                \item Conditional Probability: $P(A \cap B) = P(A) \times P(B|A)$.
-            \end{itemize}
-    \end{itemize}
-    
-    \only<article>{
-        \vspace{0.3cm}
-        \textit{Pre-reading Note: Students are expected to review the difference between \textbf{Classical} (theoretical) and \textbf{Empirical} (observational) probability in the course textbook prior to engaging with this material.}
-    }
-\end{frame}
 
 % -----------------------------------------------------------------------------
 % Lecture 3: Rules of Probability
@@ -123,7 +113,7 @@
     \end{definition}
 
     \only<article>{
-        In your previous math classes, probability experiments usually involved rolling dice or drawing playing cards. In engineering, an experiment is a quality assurance test, a sensor reading, or a system failure check.
+       We often consider probability experiments involving, flipping coins, rolling dice or drawing playing cards for illustration. However, In engineering, an experiment is a quality assurance test, a sensor reading, or a system failure check.
     }
 
     \begin{example}[Testing Microcontrollers]
@@ -168,17 +158,17 @@
 \begin{frame}{The Addition Law (Unions)}
     How do we calculate the probability of $A$ \textbf{OR} $B$ happening?
 
-    \begin{block}{1. For Mutually Exclusive Events}
+    \begin{block}{\only<presentation>{1. }For Mutually Exclusive Events}
         If $A$ and $B$ cannot happen together ($A \cap B = \varnothing$), we simply add their probabilities:
         \[ P(A \cup B) = P(A) + P(B) \]
     \end{block}
 
     \only<presentation>{\pause \vspace{0.2cm}}
 
-    \begin{alertblock}{2. The General Addition Rule}
+    \begin{block}{\only<presentation>{2. }The General Addition Rule}
         If events \textit{can} happen together, simply adding them will count the intersection twice. We must subtract the overlap:
         \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
-    \end{alertblock}
+    \end{block}
 
     \only<article>{
         \begin{example}[Manufacturing Defects]
@@ -237,12 +227,12 @@
         }
 
         % --- Step 4: Visualise the overlap to subtract ---
-        \only<presentation:4 | article:0>{
+        \only<presentation:4>{
             \draw[<-] (0,0) -- (1, -1.2) node[below] {\alert{Counted Twice!}};
         }
 
         % --- Step 5: Final Union (Hidden in Article mode) ---
-        \only<presentation:5>{
+        \only<presentation:5 | article:0>{
             % Shading the exact union smoothly
             \begin{scope}
                 \fill[purple!50!white] (Acoord) circle (\r);
@@ -321,7 +311,7 @@
 
 % --- Slide 2 of 3 ---
 \begin{frame}{Solution: A Simple Dice Example (2/3)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{3. Intersection $P(A \cap B)$:}
         \begin{itemize}
             \item The only number both even \textbf{and} divisible by 3 is 6.
@@ -336,12 +326,12 @@
             \item Elements in $A$ \textbf{or} $B$ (or both) are $\{2, 3, 4, 6\}$.
             \item There are 4 elements, so $P(A \cup B) = \frac{4}{6} = \frac{2}{3}$.
         \end{itemize}
-    \end{solution}
+   \end{solutioncont}
 \end{frame}
 
 % --- Slide 3 of 3 ---
 \begin{frame}{Solution: A Simple Dice Example (3/3)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{5. Confirming the Addition Law:}
         \begin{align*}
             P(A \cup B) &= P(A) + P(B) - P(A \cap B) \\
@@ -355,7 +345,7 @@
         \begin{itemize}
             \item \textbf{No.} Mutually exclusive events cannot happen at the same time ($A \cap B = \varnothing$). Because rolling a 6 satisfies both conditions ($A \cap B = \{6\}$), they are not mutually exclusive.
         \end{itemize}
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 
@@ -441,7 +431,7 @@
 \end{frame}
 
 \begin{frame}{Solution: Non-Independence (2/2)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{3. The Red Pair, $P(A \cap B)$:}
         
         \vspace{0.2cm}
@@ -460,12 +450,12 @@
             \item Simplifying the fraction gives our final answer:
             \[ \mathbf{\frac{2}{5}} \text{ \textbf{(or 40\%)}} \]
         \end{itemize}
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 % --- Slide 3 of 4 ---
 \begin{frame}{Solution: Non-Independence (3/4)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{4. The Trap: Calculating Unconditional $P(B)$}
         
         \vspace{0.2cm}
@@ -485,7 +475,7 @@
         
         Add the two mutually exclusive paths together (\textit{Law of Total Probability}):
         \[ P(B) = \frac{12}{30} + \frac{8}{30} = \frac{20}{30} = \mathbf{\frac{2}{3}} \]
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 % --- Slide 4 of 4 ---
@@ -534,7 +524,7 @@
 \begin{frame}{Looking Ahead}
    \only<presentation>{ \vspace{1cm}}
     \begin{block}{Next Up: Discrete Probability Distributions}
-        Now that we know the basic rules of random events, we will map these events to numerical variables. Instead of just looking at \lq Pass/Fail\rq\ events, we will learn how to calculate the probability of getting \textit{exactly 3 failures} in a batch of 50!
+        Now that we know the basic rules of random events, we will map these events to numerical variables. Instead of just looking at \lq Pass/Fail\rq\ events, we will learn how to calculate the probability of getting \textit{exactly 3 failures} in a batch of 50.
     \end{block}
 \end{frame}
 

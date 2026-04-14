@@ -117,6 +117,11 @@
 %  \setbeamercolor{block title}{fg=white,bg=red!75!black}%
   \begin{alertblock}{Recipe (#1)}}{\end{alertblock}}
 
+%Remove the second well items which can look like minuses
+\renewcommand{\labelitemii}{$\circ$}
+
+%Add a solution continued enviroment to stop the renumber problem
+\newtheorem*{solutioncont}{\only<presentation>{Solution (Continued)}}
 
 %Remove the frame title from article and here use just the section and subsection titles.
 \mode<article>{\renewcommand{\frametitle}[1]{}}
@@ -142,10 +147,10 @@
   }%
 }
 
-
+\newcommand{\dd}{\,\mathrm{d}}
 
 % Title Formatting
-\title[MATh19622-1E2]{\textbf{MATH19622-1E2: Introduction to Probability and Statistics}\\
+\title[MATH19622-1E2]{\textbf{MATH19622-1E2: Introduction to Probability and Statistics}\\
 \large 4 Lecture Series (90 minutes per Lecture)}
 \author{Anthony R. Thornton}
 \date{2025/2026}
