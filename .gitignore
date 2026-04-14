@@ -7,6 +7,9 @@
 *.out
 *.synctex.gz
 
+*.pdf
+*.vrb
+
 # Python junk
 .venv/
 __pycache__/
