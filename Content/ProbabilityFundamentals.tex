@@ -277,17 +277,35 @@ In this block we will introduce the following concepts:
         Consider rolling a fair 6-sided die. Let event $A$ be rolling an even number, and let event $B$ be rolling a number divisible by 3.
         
         \structure{Questions:}
-        \begin{enumerate}
-            \item Write down the elements of subsets $A$ and $B$.
-            \item Calculate $P(A)$ and $P(B)$.
-            \item Write down the elements of the intersection (the event that the number is both even \textbf{and} divisible by 3) and calculate its probability, $P(A \cap B)$.
-            \item Calculate the probability that the number rolled is either even \textbf{or} divisible by 3, $P(A \cup B)$, by counting the elements.
-            \item Confirm the General Addition Law for this case.
-            \item Are events $A$ and $B$ mutually exclusive?
-        \end{enumerate}  
+        
+        % Added 'onlytextwidth' to prevent the columns from overflowing the slide margins
+        \begin{columns}[T, onlytextwidth] 
+            % Expanded the left column slightly to give the text more breathing room
+            \begin{column}{0.75\textwidth} 
+                \begin{enumerate}
+                    \item Write down the elements of subsets $A$ and $B$.
+                    \item Calculate $P(A)$ and $P(B)$.
+                    \item Write down the elements of the intersection (the event that the number is both even \textbf{and} divisible by 3) and calculate its probability, $P(A \cap B)$.
+                    \item Calculate the probability that the number rolled is either even \textbf{or} divisible by 3, $P(A \cup B)$, by counting the elements.
+                    \item Confirm the General Addition Law for this case.
+                    \item Are events $A$ and $B$ mutually exclusive?
+                \end{enumerate}  
+            \end{column}
+            
+            % Shrunk the right column to tightly hug the QR code
+            \begin{column}{0.2\textwidth} 
+                \only<beamer>{
+                    \centering
+                    % Reduced the height from 2.5cm to 1.5cm
+                    \qrcode[height=1.5cm]{https://www.menti.com/al4p5cwujeoh} \\
+                    \vspace{0.1cm}
+                    % Shrunk the text to the smallest legible size
+                    \tiny Scan to answer!
+                }
+            \end{column}
+        \end{columns}
     \end{example}
 \end{frame}
-
 
 % --- Slide 1 of 3 ---
 \begin{frame}{Solution: A Simple Dice Example (1/3)}
@@ -400,14 +418,28 @@ In this block we will introduce the following concepts:
         Let $A$ be the event of drawing a red sock on your first attempt. \\
         Let $B$ be the event of drawing a red sock on your second attempt.  
 
-        \vspace{0.3cm}
         \structure{Questions:}
-        \begin{enumerate}
-            \item Calculate $P(A)$.
-            \item Assume event $A$ occurred. Calculate the probability of drawing a second red sock, $P(B|A)$.
-            \item Calculate the probability of getting a red pair, $P(A \cap B)$. 
-            \item Calculate the unconditional probability of drawing a red sock on the second attempt, $P(B)$. Is it the same as $P(B|A)$? \textit{(Hint: What if the first sock was black?)}
-        \end{enumerate}
+        
+        \begin{columns}[T, onlytextwidth]
+            \begin{column}{0.75\textwidth}
+                \begin{enumerate}
+                \small
+                    \item Calculate $P(A)$.
+                    \item Assume event $A$ occurred. Calculate the probability of drawing a second red sock, $P(B|A)$.
+                    \item Calculate the probability of getting a red pair, $P(A \cap B)$. 
+                    \item Calculate the unconditional probability of drawing a red sock on the second attempt, $P(B)$. Is it the same as $P(B|A)$? \textit{(Hint: What if the first sock was black?)}
+                \end{enumerate}
+            \end{column}
+            
+            \begin{column}{0.2\textwidth}
+                \only<beamer>{
+                    \centering
+                    \qrcode[height=1.5cm]{https://www.menti.com/aleths3k2r1x} \\
+                    \vspace{0.1cm}
+                    \tiny Scan to answer!
+                }
+            \end{column}
+        \end{columns}
     \end{example}  
 \end{frame}
 
