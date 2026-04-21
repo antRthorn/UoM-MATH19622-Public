@@ -1,0 +1,100 @@
+%!TEX root = ExerciseSheet2.tex
+% -----------------------------------------------------------------------------
+% PART A
+% -----------------------------------------------------------------------------
+
+\subsection*{Part A: The Idea}
+\textit{These questions test the mathematical definitions and calculations devoid of physical context.}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, leftmargin=*]
+    \item \textbf{Continuous Random Variables \& Probability Density Functions} \\
+    A continuous random variable $X$ has the following Probability Density Function (PDF):
+    $$
+    f(x) = \begin{cases} 
+    cx^2 & \text{for } 0 \leq x \leq 3 \\ 
+    0 & \text{otherwise} 
+    \end{cases}
+    $$
+    \begin{enumerate}[label=\arabic*.]
+        \item Find the value of $c$, knowing that the total area under a valid PDF must equal 1.
+        \item Calculate the probability $P(X \leq 2)$ by integrating the PDF.
+        \item Calculate the expected value, $E(X)$.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{The Standard Normal Distribution ($Z$)} \\
+    Let $Z$ be a standard normal random variable, $Z \sim N(0, 1^2)$. Using your standard normal distribution tables, find the following probabilities:
+    \begin{enumerate}[label=\arabic*.]
+        \item $P(Z \leq 1.25)$
+        \item $P(Z > 0.50)$ \textit{(Hint: Use the complement rule).}
+        \item $P(Z \leq -1.10)$ \textit{(Hint: Use the symmetry of the normal curve).}
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Standardisation \& The Normal Distribution} \\
+    Let $X$ be a normally distributed random variable, $X \sim N(\mu=50, \sigma^2=16)$. Note that the standard deviation is $\sigma = 4$.
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the Z-score for $x = 56$.
+        \item Calculate the Z-score for $x = 42$.
+        \item Find the probability $P(X \leq 56)$ by converting it to a Z-score and using the standard normal table.
+    \end{enumerate}
+
+\end{enumerate}
+
+\vspace{0.8cm}
+
+% -----------------------------------------------------------------------------
+% PART B
+% -----------------------------------------------------------------------------
+\subsection*{Part B: Exam style questions: Engineering Application}
+\textit{These questions test the exact same mathematical concepts as Part A, but applied to the Electrical Engineering scenarios discussed in the lecture.}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, leftmargin=*, start=4]
+
+    \item \textbf{Continuous PDFs in Engineering (Sensor Drift)} \\
+    An engineer models the voltage drift $X$ (in millivolts) of a thermal sensor prototype using the continuous PDF:
+    $$
+    f(x) = \begin{cases} 
+    0.5x & \text{for } 0 \leq x \leq 2 \\ 
+    0 & \text{otherwise} 
+    \end{cases}
+    $$
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the probability that the sensor drift is \textbf{less than 1mV} (i.e., $P(X < 1)$).
+        \item Calculate the expected average voltage drift, $E(X)$.
+        \item Determine the Cumulative Distribution Function (CDF), $F(x)$, by integrating from $0$ to $x$.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Normal Quality Assurance (Manufacturing Tolerances)} \\
+    A production line manufactures precision resistors. The resistance values are normally distributed with a mean of $1000\,\Omega$ ($\mu = 1000$) and a standard deviation of $20\,\Omega$ ($\sigma = 20$).
+    \begin{enumerate}[label=\arabic*.]
+        \item What is the probability that a randomly selected resistor has a resistance of \textbf{less than $1035\,\Omega$}?
+        \item What is the probability that a resistor has a resistance \textbf{greater than $1025\,\Omega$}?
+        \item The manufacturer guarantees that any resistor outside the range of $960\,\Omega$ to $1040\,\Omega$ will be rejected. Using the Empirical Rule (68-95-99.7), what percentage of resistors are expected to be \textbf{accepted}?
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Comparing Components (Z-Scores in Action)} \\
+    You are sourcing components from two different suppliers. You test one component from each:
+    \begin{itemize}
+        \item \textbf{Supplier A (Capacitors):} $\mu = 50\,\mu\text{F}$, $\sigma = 0.5\,\mu\text{F}$. The tested capacitor measures $51.2\,\mu\text{F}$.
+        \item \textbf{Supplier B (Inductors):} $\mu = 100\text{ mH}$, $\sigma = 2\text{ mH}$. The tested inductor measures $104\text{ mH}$.
+    \end{itemize}
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the unitless Z-score for the tested capacitor.
+        \item Calculate the unitless Z-score for the tested inductor.
+        \item Mathematically, which of these two components is more \lq unusual\rq\ (i.e., relatively further from its design specification)?
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{The Grand Convergence (Normal Approximation)} \\
+    A factory produces memory chips with a historical defect rate of $20\%$ ($p = 0.2$). Today, they manufactured a massive batch of $400$ chips ($n = 400$). Calculating the exact Binomial probability of failures would overload a standard calculator.
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the expected mean ($\mu$) and standard deviation ($\sigma$) of the defects to build our continuous Normal approximation.
+        \item Using your Normal approximation parameters, calculate the Z-score for finding exactly $64$ defective chips.
+        \item Use the Z-table to find the approximate probability that the factory produced \textbf{less than 64} defective chips today.
+    \end{enumerate}
+
+\end{enumerate}
+
