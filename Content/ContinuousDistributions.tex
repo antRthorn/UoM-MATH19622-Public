@@ -469,7 +469,7 @@ can \emph{only be done numerically}
     \framebreak
     \begin{solution}
     	\small
-        We cannot compare Ohms to Microfarads directly. We must convert both to dimensionless (unitless) Z-scores!
+        We cannot compare Ohms to Microfarads directly. We must convert both to dimensionless (unitless) Z-scores.
         
         \textbf{1. Line A (Resistor):}
         \[ Z_A = \frac{X - \mu}{\sigma} = \frac{1035 - 1000}{20} = \frac{35}{20} = \mathbf{1.75} \]
@@ -479,7 +479,7 @@ can \emph{only be done numerically}
         \[ Z_B = \frac{X - \mu}{\sigma} = \frac{51.2 - 50}{0.5} = \frac{1.2}{0.5} = \mathbf{2.40} \]
         The capacitor is $2.40$ standard deviations above its mean.
         
-        \textbf{Conclusion:} Even though the resistor's absolute error was $35$ and the capacitor's error was only $1.2$, the \textbf{capacitor is much more unusual}. It is further out in the tail of its distribution!
+        \textbf{Conclusion:} Even though the resistor's absolute error was $35$ and the capacitor's error was only $1.2$, the \textbf{capacitor is much more unusual}. It is further out in the tail of its distribution.
     \end{solution}
 \end{frame}
 
@@ -871,6 +871,27 @@ can \emph{only be done numerically}
        
        Technically, when mapping a \lq chunky\rq\ discrete histogram onto a smooth continuous curve, we should use a \textbf{Continuity Correction} (e.g., checking $X < 63.5$ instead of $X < 64$ to account for the width of the histogram bin). However, when $n$ and $\lambda$ are very large, this correction factor becomes so infinitesimally small that engineers often ignore it for rough approximations. For this introductory level, we are omitting the $\pm 0.5$ correction to focus squarely on the Z-score mechanics.
     }
+\end{frame}
+
+\subsection{Is everything \lq normal\rq\ }
+\begin{frame}{A Crucial Warning: The Central Limit Theorem}
+    Wait, does \textit{every} distribution become a bell curve if we just collect enough data?
+    
+    \vspace{0.2cm}
+    \begin{alertblock}{The Trap}
+        \textbf{No!} If you roll a fair 6-sided die 1,000,000 times, the distribution of those individual rolls stays perfectly flat (a Uniform Distribution).
+    \end{alertblock}
+
+    \pause
+    \vspace{0.2cm}
+    \begin{block}{The Central Limit Theorem (CLT)}
+        The Normal curve only appears when we take the \textbf{SUM} or the \textbf{AVERAGE} of many independent random variables.
+        
+        \begin{itemize}
+            \item \textbf{Why Binomial works:} \only<article>{A Binomial variable is exactly this, It }is the \textit{sum} of $n$ independent binary successes\only<article>{ (like counting the total number of defective chips)}. 
+            \item Because $n$ is so large, we \only<article>{are summing hundreds of independent events, which causes the final total to }naturally form a Normal Distribution.
+        \end{itemize}
+    \end{block}
 \end{frame}
 
 \section{Beyond the Normal Curve}
