@@ -57,10 +57,11 @@ We moved from descriptive statistics to predicting the future using probability.
 
 \section{Continuous Random Variables}
 
+\subsection{From Counting to Measuring}
 \begin{frame}{From Counting to Measuring}
     So far, we have looked at \textbf{Discrete} variables: things we can count (e.g., $0, 1, 2$ defective chips). 
-    
-    \vspace{0.2cm}
+  \only<presentation>{  
+    \vspace{0.2cm}}
     But what if we are measuring the exact voltage of a 5V power supply? It might be $5.01\text{V}$, or $5.013\text{V}$, or $5.01347\text{V}\dots$
     
     \begin{definition}[Continuous Random Variable]
@@ -68,11 +69,11 @@ We moved from descriptive statistics to predicting the future using probability.
     \end{definition}
 
     \only<article>{
-        \vspace{0.2cm}
         \textbf{The Histogram Connection:} Imagine drawing a histogram of battery voltages. If you measure 10 batteries, your bins are wide and blocky. If you measure 10,000 batteries and make your bins infinitely narrow, the jagged top of the histogram smooths out into a continuous curve. This curve is the foundation of continuous probability!
     }
 \end{frame}
 
+\subsection{The Probability Density Function (PDF)}
 \begin{frame}{The Probability Density Function (PDF)}
     \only<article>{Instead of a table, c}\only<presentation>{C}ontinuous variables are defined \only<article>{by a mathematical curve called }a \textbf{Probability Density Function}, or PDF, usually denoted as $f(x)$.
 
@@ -128,12 +129,16 @@ We moved from descriptive statistics to predicting the future using probability.
 \end{frame}
 
 \begin{frame}{Mean and Variance of Continuous Distributions}
-  \only<article>{  Just as we did for discrete distributions, we can find the centre and spread of a continuous probability density function (PDF). The summations ($\sum$) simply become integrals ($\int$) over the entire domain!}
+  \only<article>{  Just as we did for discrete distributions, we can find the centre and spread of a continuous probability density function (PDF). The summations ($\sum$) simply become integrals ($\int$) over the entire domain.}
 
     \begin{block}{Expected Value (Mean)}
-        The expected value, $\mu$ or $E(X)$, represents the \lq centre of mass\rq\ of the distribution:
+        The expected value, $\mu$ or $E(X)$, represents the \lq centre-of-mass\rq\ of the distribution:
         \[ \mu = E(X) = \int_{-\infty}^{\infty} x f(x) \dd x \]
+          \only<article>{Recall that for a discrete random variable, the expected value was the sum of each outcome multiplied by its probability:
+        \[ E(X) = \sum x P(x). \]}
     \end{block}
+
+
 
     \pause    
     \begin{block}{Variance}
@@ -146,7 +151,7 @@ We moved from descriptive statistics to predicting the future using probability.
     
     \only<article>{
         \vspace{0.3cm}
-        \textit{Instructor Note: Remind the students that standard deviation ($\sigma$) is still just the square root of the variance. The shortcut formula is especially important here, as expanding $(x-\mu)^2$ inside an integral usually leads to a messy and error-prone integration by parts!}
+        \textit{Note that standard deviation ($\sigma$) is still just the square root of the variance.}
     }
 \end{frame}
 
@@ -185,7 +190,7 @@ We moved from descriptive statistics to predicting the future using probability.
 \end{frame}
 
 \begin{frame}{Solution: A Custom Continuous Distribution (2/4)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{2. Determine the CDF, $F(x)$:} \\
         The CDF accumulates area from the lower bound ($0$) up to an arbitrary point $x$. We integrate using a dummy variable $t$:
         \begin{align*}
@@ -193,19 +198,19 @@ We moved from descriptive statistics to predicting the future using probability.
                  &= \left[ 0.25 t^2 \right]_{0}^{x} = \mathbf{0.25 x^2}
         \end{align*}
         \textit{(Valid for $0 \leq x \leq 2$. Once $x$ passes 2, the CDF stays flat at 1).}
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 \begin{frame}{Solution: A Custom Continuous Distribution (3/4)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{3. Probability the error is less than $1\text{ mV}$ ($P(X < 1)$):} \\
         Because we already found the CDF, we don't need to integrate again! We simply plug $1$ into $F(x)$:
         \[ P(X < 1) = F(1) = 0.25(1)^2 = \mathbf{0.25} \text{ \textbf{(or 25\%)}} \]
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 \begin{frame}{Solution: A Custom Continuous Distribution (4/4)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{4. Expected Value (Mean), $E(X)$:} \\
         For continuous variables, the sum becomes an integral: $E(X) = \int x f(x) \dd x$.
         \begin{align*}
@@ -213,11 +218,11 @@ We moved from descriptive statistics to predicting the future using probability.
                  &= \int_{0}^{2} 0.5x^2 \dd x \\
                  &= \left[ \frac{0.5x^3}{3} \right]_{0}^{2} = \frac{4}{3} \approx \mathbf{1.33\text{ \textbf{mV}}}
         \end{align*}
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 \begin{frame}[plain]{Solution: A Custom Continuous Distribution (5/5)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{5. Calculate the Variance, $V(X)$:} 
  \only<article>{     \\  Using our shortcut formula: $V(X) = E(X^2) - [E(X)]^2$. 
         
@@ -234,17 +239,17 @@ We moved from descriptive statistics to predicting the future using probability.
             V(X) &= 2 - \left(\frac{4}{3}\right)^2 \\
                  &= 2 - \frac{16}{9} = \frac{18}{9} - \frac{16}{9} = \mathbf{\frac{2}{9}} \approx \mathbf{0.222\text{ \textbf{mV}}^2}
         \end{align*}
-    \end{solution}
+    \end{solutioncont}
 \end{frame}
 
 \section{The Normal Distribution}
-
+\subsection{Introduction}
 \begin{frame}{The Normal (Gaussian) Distribution}
    \only<article>{ The most important continuous distribution in all of engineering is the \textbf{Normal Distribution}.} It naturally models thermal noise in circuits, manufacturing tolerances, and measurement errors.
 
-    \vspace{0.2cm}
+   \only<presentation>{ \vspace{0.2cm}}
     If a variable $X$ follows a normal distribution, we write: $X \sim N(\mu, \sigma^2)$
-    
+    \only<presentation>{   }
        \textit{Where $\mu$ is the mean (the centre) and $\sigma^2$ is the variance (the spread).}
 
     \vspace{0.2cm}
@@ -319,7 +324,7 @@ can \emph{only be done numerically}
     \end{block}
 
     \only<article>{
-        \textbf{Engineering Note:} You will not be asked to integrate this function by hand in this course! However, you must recognise its components. Notice how the exponent contains the fraction $\frac{x-\mu}{\sigma}$. This ratio (the distance from the mean, scaled by the standard deviation) is so mathematically important that we give it a special name: the \textbf{Z-score}. We will explore this in the next section!
+        \textbf{Engineering Note:} You will not be asked to integrate this function by hand in this course. However, you must recognise its components. Notice how the exponent contains the fraction $\frac{x-\mu}{\sigma}$. This ratio (the distance from the mean, scaled by the standard deviation) is so mathematically important that we give it a special name: the \textbf{Z-score}. We will explore this in the next section.
     }
 \end{frame}
 
@@ -330,13 +335,12 @@ can \emph{only be done numerically}
         \[ \text{erf}(z) = \frac{2}{\sqrt{\pi}} \int_{0}^{z} e^{-t^2} \,dt \]
     \end{definition}
 
-    \pause \vspace{0.2cm}
+    \pause \only<presentation>{\vspace{0.2cm}}
     The exact Cumulative Distribution Function (CDF) of any Normal Distribution can be expressed using this function:
     \[ F(x) = P(X \leq x) = \frac{1}{2} \left[ 1 + \text{erf}\left( \frac{x-\mu}{\sigma \sqrt{2}} \right) \right] \]
 
     \only<article>{
-        \vspace{0.3cm}
-        \textbf{Why should an Engineer care?} You will rarely calculate the Error Function by hand—that is exactly why we use \texttt{scipy.stats} in Python! However, you will see $\text{erf}(z)$ (and its close cousin, the Q-function) constantly in your later modules. It is the fundamental equation used in \textbf{Digital Communications} when calculating the Bit Error Rate (BER) of a noisy signal, and in \textbf{Semiconductor Physics} when modelling the diffusion of dopants in silicon.
+        \textbf{Why should an Engineer care?} You will rarely calculate the Error Function by hand—that is exactly why we use \texttt{scipy.stats} in Python. However, you will see $\text{erf}(z)$ (and its close cousin, the Q-function) constantly in your later modules. It is the fundamental equation used in \textbf{Digital Communications} when calculating the Bit Error Rate (BER) of a noisy signal, and in \textbf{Semiconductor Physics} when modelling the diffusion of dopants in silicon.
     }
 \end{frame}
 
@@ -393,12 +397,13 @@ can \emph{only be done numerically}
         \textbf{Engineering Interpretations:}
         \begin{itemize}
             \item \textbf{Comparing Curves A and B:} These distributions have the \textit{exact same spread} ($\sigma=1$). An error of $+1$ is equally probable on Line A or Line B. The only difference is where the system is centred.
-            \item \textbf{Comparing Curves A and C (The Precision Problem):} Curve C has a much smaller standard deviation ($\sigma=0.5$) than Line A. Curve C might represent a very expensive, high-precision laser trimming process. It guarantees almost no variation from its center. In contrast, Line A is "slacker," with much wider engineering tolerances. 
+            \item \textbf{Comparing Curves A and C (The Precision Problem):} Curve C has a much smaller standard deviation ($\sigma=0.5$) than Line A. Curve C might represent a very expensive, high-precision laser trimming process. It guarantees almost no variation from its centre. In contrast, Line A is \lq slacker\rq, with much wider engineering tolerances. 
         \end{itemize}
-        The fact that these curves are all different is why we use \textbf{Standardisation} (Z-scores) next—to bring them all onto the same playing field!
+        The fact that these curves are all different is why we use \textbf{Standardisation} (Z-scores) next—to bring them all onto the same playing field.
     }
 \end{frame}
 
+\subsection{Z-Scores}
 \begin{frame}{Standardising the Normal Curve}
 \only<article>{There are infinitely many Normal curves—every time you change the mean ($\mu$) or the standard deviation ($\sigma$), you get a differently shaped bell. }
     
@@ -420,6 +425,7 @@ can \emph{only be done numerically}
     }
 \end{frame}
 
+\subsection{The Standard Normal Distribution}
 \begin{frame}{The Standard Normal Distribution}
     When you apply the Z-score formula to every single data point in a dataset, you create a brand new distribution called the \textbf{Standard Normal Distribution}.
 
@@ -463,7 +469,7 @@ can \emph{only be done numerically}
     \framebreak
     \begin{solution}
     	\small
-        We cannot compare Ohms to Microfarads directly. We must convert both to unitless Z-scores!
+        We cannot compare Ohms to Microfarads directly. We must convert both to dimensionless (unitless) Z-scores!
         
         \textbf{1. Line A (Resistor):}
         \[ Z_A = \frac{X - \mu}{\sigma} = \frac{1035 - 1000}{20} = \frac{35}{20} = \mathbf{1.75} \]
@@ -477,31 +483,37 @@ can \emph{only be done numerically}
     \end{solution}
 \end{frame}
 
+\subsection{The Standard Normal Table ($Z$-Table)}
 \begin{frame}{The Standard Normal Table ($Z$-Table)}
     \only<article>{Look up the first decimal place on the left, and the second decimal place across the top. The intersection is the cumulative area $P(Z \leq z)$.}
-    \begin{center}
-  \includegraphics[trim=2cm 2.5cm 2cm 8.25cm, clip, height=0.95\textheight, keepaspectratio]{Resources/NormalDistibutionTable.pdf}
-    \end{center}
-    
-    \only<article>{
-        \textit{Instructor Note: For example, to find $Z = 1.24$, follow the row for 1.2 across to the column for 0.04. The value is 0.8925.}
+\begin{center}
+    % On the slides: Maximize vertical space to fill the screen
+    \only<presentation>{
+        \includegraphics[trim=2cm 2.5cm 2cm 8.25cm, clip, height=0.95\textheight, keepaspectratio]{Resources/NormalDistibutionTable.pdf}
     }
+    % In the handout: Constrain by width so it sits nicely within the page margins
+    \only<article>{
+        \includegraphics[trim=2cm 2.5cm 2cm 8.25cm, clip, width=0.85\textwidth, keepaspectratio]{Resources/NormalDistibutionTable.pdf}
+    }
+\end{center}
+    
 \end{frame}
 
 \begin{frame}{How to Read a Z-Table}
-   \only<article>{ Before Python, engineers relied on printed \textbf{Standard Normal Tables} (which you have as a handout!). This table gives the cumulative probability $\Phi(z) = P(Z \leq z)$.}
+   \only<article>{ Before Python, engineers relied on printed \textbf{Standard Normal Tables} (which you have as a handout). This table gives the cumulative probability $\Phi(z) = P(Z \leq z)$.}
 
     \begin{block}{Reading the Table}
         \begin{itemize}
             \item \textbf{Left Column:} Gives the $Z$-score up to the first decimal place (e.g., $1.2$).
             \item \textbf{Top Row:} Gives the second decimal place (e.g., $0.04$).
             \item \textbf{Intersection:} The value at row $1.2$ and column $0.04$ gives the total area: $P(Z \leq 1.24)$.
+            \item \textbf{CP:} The value is 0.8925.
         \end{itemize}
     \end{block}
 
     \pause \vspace{0.2cm}
     \begin{alertblock}{Handling Negative Z-Scores}
-        Notice your table only shows positive $Z$ values! Because the Normal Curve is perfectly symmetric, the left tail is identical to the right tail. To find negative areas, we use the complement rule:
+        Notice your table only shows positive $Z$ values. Because the Normal Curve is perfectly symmetric, the left tail is identical to the right tail. To find negative areas, we use the complement rule:
         $$P(Z \leq -z) = 1 - P(Z \leq z)$$
     \end{alertblock}
 \end{frame}
@@ -534,7 +546,7 @@ can \emph{only be done numerically}
         \textbf{2. Greater than $1025\,\Omega$:}
         \begin{itemize}
             \item Find the Z-score: $Z = \frac{1025 - 1000}{20} = 1.25$
-            \item We want $P(Z > 1.25)$. The table only gives "less than" areas!
+            \item We want $P(Z > 1.25)$. The table only gives \lq less than\rq\ areas!
             \item Use the complement: $P(Z > 1.25) = 1 - P(Z \leq 1.25)$.
             \item Look at row \textbf{1.2}, column \textbf{0.05}. Table value is $0.8944$.
             \item Answer: $1 - 0.8944 = \mathbf{0.1056}$ (or 10.56\%).
@@ -543,7 +555,7 @@ can \emph{only be done numerically}
 \end{frame}
 
 \begin{frame}{Solution: Using the Z-Table (2/2)}
-    \begin{solution}
+    \begin{solutioncont}
         \textbf{3. Less than $970\,\Omega$:}
         \begin{itemize}
             \item Find the Z-score: $Z = \frac{970 - 1000}{20} = \frac{-30}{20} = -1.50$
@@ -553,11 +565,10 @@ can \emph{only be done numerically}
             \item Look at row \textbf{1.5}, column \textbf{0.00}. Table value is $0.9332$.
             \item Answer: $1 - 0.9332 = \mathbf{0.0668}$ (or 6.68\%).
         \end{itemize}
-    \end{solution}
+    \end{solutioncont}
     
     \only<article>{
-        \vspace{0.4cm}
-        \textbf{Instructor Note:} Always encourage students to draw a quick sketch of the bell curve for these problems! Shading the area they are looking for is the single best way to avoid accidentally forgetting the "$1 - $" step for "greater than" or negative Z-score problems.
+        \textbf{Tip:} It can be useful, especially when you first start this type of questions, to draw a quick sketch of the bell curve for these problems. Shading the area you are looking for is the single best way to avoid accidentally forgetting the \lq$1 - $\rq\ step for \lq greater than\rq\ or negative Z-score problems.
     }
 \end{frame}
 
@@ -575,7 +586,7 @@ can \emph{only be done numerically}
     
     \only<article>{
         \vspace{0.3cm}
-        \textbf{Why this matters to EEEs:} If a manufacturer states that a component's specs are \lq guaranteed to $3\sigma$\rq, they are telling you that 99.7\% of the components will operate within the stated tolerance. Only 3 in 1,000 will fail! This is the foundation of the famous \lq Six Sigma\rq\ quality control methodology.
+        \textbf{Why this matters to EEEs:} If a manufacturer states that a component's specs are \lq guaranteed to $3\sigma$\rq, they are telling you that 99.7\% of the components will operate within the stated tolerance. Only 3 in 1,000 will fail. This is the foundation of the famous \lq Six Sigma\rq\ quality control methodology.
     }
 \end{frame}
 
@@ -614,7 +625,7 @@ can \emph{only be done numerically}
 \end{frame}
 
 \begin{frame}[fragile]{Python: The Normal Distribution}
-  \only<article>{  In the old days, engineers had to use massive printed lookup tables to find areas under the Normal curve. Today, we just use the \texttt{scipy.stats} library!
+  \only<article>{  In the old days, engineers had to use massive printed lookup tables to find areas under the Normal curve. Today, we just use the \texttt{scipy.stats} library.
 
 
     Because the probability of an exact point is zero, we almost never use the Probability Density Function (\texttt{pdf}) to find probabilities. Instead, we use the Cumulative Distribution Function (\texttt{cdf}) to find areas.
@@ -631,11 +642,12 @@ can \emph{only be done numerically}
     }
 \end{frame}
 
+\subsection{The Grand Convergence: Large Numbers}
 \begin{frame}{The Grand Convergence: Large Numbers}
     What happens to our discrete distributions when we deal with massive quantities (like millions of transistors or network packets)? 
 
    \only<article>{
-    As the numbers grow, the \lq blocky\rq\ discrete histograms stretch and smooth out, eventually becoming perfectly bell-shaped!}
+    As the numbers grow, the \lq blocky\rq\ discrete histograms stretch and smooth out, eventually becoming perfectly bell-shaped.}
 
     \vspace{0.2cm}
     \begin{columns}[T]
@@ -678,6 +690,7 @@ can \emph{only be done numerically}
     }
 \end{frame}
 
+\subsection{Example: Binomial to Normal}
 \begin{frame}[allowframebreaks]{Example: Binomial to Normal}
     \begin{example}[Manufacturing Yield]
         A factory produces memory chips with a historical defect rate of 20\% ($p = 0.2$). Today, they manufactured $400$ chips. 
@@ -727,6 +740,87 @@ can \emph{only be done numerically}
 
 \end{frame}
 
+\subsection{Visualising the Convergence}
+\begin{frame}{Visualising the Convergence}
+    \only<article>{
+        Let return to our coin flip case. Here is the visual proof of the Grand Convergence. We are plotting the exact Binomial probability of getting heads (bars) overlaid with the Normal approximation (the red curve) for $n=10$, $n=100$, and $n=1000$ flips.
+        
+        \vspace{0.5cm}
+        \noindent
+        % Minipages guarantee side-by-side layout in Article mode
+        \begin{minipage}[t]{0.31\textwidth}
+            \centering
+            \textbf{$n = 10$ flips} \\
+            \vspace{0.2cm}
+            \includegraphics[width=\textwidth]{Resources/Convergence_n10.pdf}
+            
+            \vspace{0.1cm}
+            \footnotesize The Binomial bars are wide and \lq blocky\rq. The Normal curve is a decent fit, but the gaps are visible.
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[t]{0.31\textwidth}
+            \centering
+            \textbf{$n = 100$ flips} \\
+            \vspace{0.2cm}
+            \includegraphics[width=\textwidth]{Resources/Convergence_n100.pdf}
+            
+            \vspace{0.1cm}
+            \footnotesize The discrete bars are getting thinner. The Normal curve now traces them almost perfectly.
+        \end{minipage}%
+        \hfill
+        \begin{minipage}[t]{0.31\textwidth}
+            \centering
+            \textbf{$n = 1000$ flips} \\
+            \vspace{0.2cm}
+            \includegraphics[width=\textwidth]{Resources/Convergence_n1000.pdf}
+            
+            \vspace{0.1cm}
+            \footnotesize The discrete histogram has become so dense it is indistinguishable from the continuous Normal curve.
+        \end{minipage}
+        
+        \vspace{0.5cm}
+        \textbf{The Takeaway:} This is why we can swap a complex discrete summation for a simple continuous integral when working with large numbers. The error between the two models shrinks to near zero.
+    }
+    
+    \only<presentation>{
+        \begin{columns}[T]
+            % Column 1: n = 10
+            \begin{column}{0.33\textwidth}
+                \centering
+                \textbf{$n = 10$ flips} \\
+                \vspace{0.2cm}
+                \includegraphics[width=\textwidth]{Resources/Convergence_n10.pdf}
+                
+                \vspace{0.1cm}
+                \scriptsize The Binomial bars are wide and \lq blocky\rq. The Normal curve is a decent fit, but the gaps are visible.
+            \end{column}
+            
+            % Column 2: n = 100
+            \begin{column}{0.33\textwidth}
+                \centering
+                \textbf{$n = 100$ flips} \\
+                \vspace{0.2cm}
+                \includegraphics[width=\textwidth]{Resources/Convergence_n100.pdf}
+                
+                \vspace{0.1cm}
+                \scriptsize The discrete bars are getting thinner. The Normal curve now traces them almost perfectly.
+            \end{column}
+            
+            % Column 3: n = 1000
+            \begin{column}{0.33\textwidth}
+                \centering
+                \textbf{$n = 1000$ flips} \\
+                \vspace{0.2cm}
+                \includegraphics[width=\textwidth]{Resources/Convergence_n1000.pdf}
+                
+                \vspace{0.1cm}
+                \scriptsize The discrete histogram has become so dense it is indistinguishable from the continuous Normal curve!
+            \end{column}
+        \end{columns}
+    }
+\end{frame}
+
+\subsection{Example: Poisson to Normal}
 \begin{frame}[allowframebreaks]{Example: Poisson to Normal}
     \begin{example}[Fiber Optic Packets]
         A fibre optic router receives an average of $100$ data packets per millisecond ($\lambda = 100$). 
@@ -756,7 +850,7 @@ can \emph{only be done numerically}
 \end{frame}
 
 \begin{frame}
-\begin{solution}
+\begin{solutioncont}
         \textbf{Step 3: Look up the area.}
         Because we want \lq more than\rq , we use the complement rule: \\
         $P(Z > 2.00) = 1 - P(Z \leq 2.00)$. \\
@@ -770,21 +864,24 @@ can \emph{only be done numerically}
         \begin{block}{Comparison}
             Our hand-calculated Normal approximation ($2.28\%$) is accurate to the exact Poisson value ($2.27\%$) to within one-hundredth of a percent! The approximation performs incredibly well when $\lambda$ is large.
         \end{block}
-    \end{solution}
+    \end{solutioncont}
 
     \only<article>{
-        \textbf{Instructor Note (Continuity Correction):} Technically, when mapping a "chunky" discrete histogram onto a smooth continuous curve, we should use a \textbf{Continuity Correction} (e.g., checking $X < 63.5$ instead of $X < 64$ to account for the width of the histogram bin). However, when $n$ and $\lambda$ are very large, this correction factor becomes so infinitesimally small that engineers often ignore it for rough approximations. For this introductory level, we are omitting the $\pm 0.5$ correction to focus squarely on the Z-score mechanics.
+       \subsubsection{Continuity Correction} 
+       
+       Technically, when mapping a \lq chunky\rq\ discrete histogram onto a smooth continuous curve, we should use a \textbf{Continuity Correction} (e.g., checking $X < 63.5$ instead of $X < 64$ to account for the width of the histogram bin). However, when $n$ and $\lambda$ are very large, this correction factor becomes so infinitesimally small that engineers often ignore it for rough approximations. For this introductory level, we are omitting the $\pm 0.5$ correction to focus squarely on the Z-score mechanics.
     }
 \end{frame}
 
+\section{Beyond the Normal Curve}
 \begin{frame}{Beyond the Normal Curve}
-    The Normal distribution is everywhere, but it is not the only continuous probability model! Depending on your engineering discipline, you will eventually encounter others:
+    The Normal distribution is everywhere, but it is not the only continuous probability model. Depending on your engineering discipline, you will eventually encounter others:
 
     \vspace{0.2cm}
     \begin{itemize}
         \item \textbf{Uniform Distribution:} A flat rectangle where any value in a range is equally likely. 
         \begin{itemize}
-            \item \textit{Used in:} Modeling quantization error in Analog-to-Digital Converters (ADCs).
+            \item \textit{Used in:} Modelling quantisation error in Analog-to-Digital Converters (ADCs).
         \end{itemize}
         
         \vspace{0.2cm}
@@ -802,12 +899,13 @@ can \emph{only be done numerically}
 
     \only<article>{
         \vspace{0.3cm}
-        \textit{Instructor Note: Reassure the students that they don't need to memorize these for the current exam! This is purely to show them that the exact same mechanics they just learned (integrating the PDF to find the CDF and the mean) apply perfectly to all of these advanced distributions.}
+        \textit{Here we will not do into a full details, this is purely to show you that the exact same mechanics they just learned (integrating the PDF to find the CDF and the mean) apply perfectly to all of these advanced distributions.}
     }
 \end{frame}
 
+\subsection{Formulas for Other Distributions}
 \begin{frame}[allowframebreaks]{Formulas for Other Distributions}
-    While not strictly on this semester's syllabus, here is the mathematical reference for the distributions we just mentioned. Notice how every single one still has a clearly defined PDF, mean, and variance!
+    While not part of this course, here is the mathematical reference for the distributions we just mentioned. Notice how every single one still has a clearly defined PDF, mean, and variance.
 
     \vspace{0.2cm}
     \begin{block}{Continuous Uniform Distribution: $U(a, b)$}
@@ -851,6 +949,7 @@ can \emph{only be done numerically}
     \end{block}
 \end{frame}
 
+\section{Summary: Continuous Probability Distributions}
 \begin{frame}{Summary: Continuous Probability Distributions}
     \begin{itemize}
         \item \textbf{Continuous Random Variables:}

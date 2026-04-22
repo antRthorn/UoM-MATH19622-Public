@@ -428,6 +428,39 @@ Scenario:
     }
 \end{frame}
 
+\subsection{Visualising Data: Bar Charts vs. Histograms}
+
+\begin{frame}{Visualising Data: Bar Charts vs. Histograms}
+    A very common mistake in engineering is confusing Bar Charts with Histograms. The type of chart you use depends entirely on the type of data you have!
+
+    \begin{columns}[T]
+        \column{0.5\textwidth}
+        \begin{block}{\only<presentation>{1. }Bar Chart (Discrete / Categorical)}
+            \begin{itemize}
+                \item Used for distinct categories or countable integers.
+                \item There are \textbf{gaps} between the bars because the values do not flow into each other.
+                \item \textit{Example:} Number of faults per machine (Machine A, Machine B).
+            \end{itemize}
+        \end{block}
+
+        \column{0.5\textwidth}
+        \begin{block}{\only<presentation>{2. }Histogram (Continuous)}
+            \begin{itemize}
+                \item Used for continuous measurements.
+                \item The x-axis is a continuous number line grouped into \lq bins\rq.
+                \item There are \textbf{no gaps} between the bars. The \textit{area} represents frequency.
+                \item \textit{Example:} The distribution of battery voltages (4.9V to 5.1V).
+            \end{itemize}
+        \end{block}
+    \end{columns}
+    
+    \only<article>{
+        \vspace{0.4cm}
+        \textbf{The Engineering Connection:} \\
+        Histograms are incredibly powerful for visualising the \lq shape\rq\ of your noise. If you measure the voltage of 10 batteries, your histogram bins will be wide and blocky. However, if you measure 10,000 batteries and make your bins infinitely narrow, the jagged top of the histogram smooths out into a continuous curve. We will revisit this exact concept in Block IV when we learn about the Normal Distribution (the Bell Curve)!
+    }
+\end{frame}
+
 % -----------------------------------------------------------------------------
 % Section 3: Measures of Location
 % -----------------------------------------------------------------------------
