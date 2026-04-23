@@ -411,6 +411,26 @@ In this block we will introduce the following concepts:
     }
 \end{frame}
 
+\begin{frame}{System Reliability: Series vs. Parallel}
+    We use the Multiplication Law of independent events to calculate the overall reliability ($R$) of an engineering system.
+    
+    \begin{block}{1. Series Mode (Logic AND)}
+        \textbf{All} components must work for the system to survive. We multiply the reliabilities directly:
+        $$R_{sys} = R_1 \times R_2 \times R_3 \dots$$
+        \textit{Takeaway: Adding components in series always decreases overall reliability.}
+    \end{block}
+    
+    \begin{block}{2. Parallel Mode (Redundancy)}
+        Only \textbf{one} component needs to work. The system dies only if \textbf{all} components fail ($P_{fail} = 1 - R$). 
+        
+        First, we multiply the failure probabilities:
+        $$P_{fail\_total} = P_{fail\_1} \times P_{fail\_2} \times \dots$$
+        Then, we find the new system reliability:
+        $$R_{sys} = 1 - P_{fail\_total}$$
+        \textit{Takeaway: Redundancy dramatically increases overall reliability.}
+    \end{block}
+\end{frame}
+
 \begin{frame}{Example of Non-Independence}
     \begin{example}[Drawing Socks without Replacement]
         You have 4 red socks and 2 black socks in a basket. You draw two socks from the basket \textbf{without replacement}. 
