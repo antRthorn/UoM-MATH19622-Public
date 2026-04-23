@@ -111,6 +111,7 @@ In this block we will introduce the following concepts:
         An \textbf{experiment} is any process whose outcome is subject to uncertainty. \\
         The \textbf{sample space} ($S$) is the set of all possible outcomes.
     \end{definition}
+    
 
     \only<article>{
        We often consider probability experiments involving, flipping coins, rolling dice or drawing playing cards for illustration. However, In engineering, an experiment is a quality assurance test, a sensor reading, or a system failure check.
@@ -121,12 +122,14 @@ In this block we will introduce the following concepts:
         The sample space has 8 possible outcomes:
         \[ S = \{PPP, PPF, PFP, PFF, FPP, FPF, FFP, FFF\} \]
     \end{example}
+    
 
     \begin{definition}[Event]
         An \textbf{event} is any subset of the sample space. 
     \end{definition}
     
     \only<presentation>{\vspace{0.2cm}}
+    
     
     If we define Event $A$ as \lq exactly one microcontroller fails\rq, then:
     \[ A = \{PPF, PFP, FPP\} \]
@@ -411,23 +414,24 @@ In this block we will introduce the following concepts:
     }
 \end{frame}
 
+\subsection{System Reliability: Series vs. Parallel}
 \begin{frame}{System Reliability: Series vs. Parallel}
-    We use the Multiplication Law of independent events to calculate the overall reliability ($R$) of an engineering system.
+    \only<article>{We use the Multiplication Law of independent events to calculate the overall reliability ($R$) of an engineering system.}
     
     \begin{block}{1. Series Mode (Logic AND)}
         \textbf{All} components must work for the system to survive. We multiply the reliabilities directly:
         $$R_{sys} = R_1 \times R_2 \times R_3 \dots$$
-        \textit{Takeaway: Adding components in series always decreases overall reliability.}
+      \only<article>{  \textit{Takeaway: Adding components in series always decreases overall reliability.}}
     \end{block}
     
     \begin{block}{2. Parallel Mode (Redundancy)}
-        Only \textbf{one} component needs to work. The system dies only if \textbf{all} components fail ($P_{fail} = 1 - R$). 
+        Only \textbf{one} component needs to work. \only<article>{The system dies only if \textbf{all} components fail ($P_{fail} = 1 - R$). }
         
         First, we multiply the failure probabilities:
         $$P_{fail\_total} = P_{fail\_1} \times P_{fail\_2} \times \dots$$
         Then, we find the new system reliability:
         $$R_{sys} = 1 - P_{fail\_total}$$
-        \textit{Takeaway: Redundancy dramatically increases overall reliability.}
+       \only<article>{ \textit{Takeaway: Redundancy dramatically increases overall reliability.}}
     \end{block}
 \end{frame}
 
