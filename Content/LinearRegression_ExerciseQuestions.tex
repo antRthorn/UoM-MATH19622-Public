@@ -1,0 +1,91 @@
+% -----------------------------------------------------------------------------
+% PART A
+% -----------------------------------------------------------------------------
+\subsection*{Part A: The Idea}
+\textit{These questions test the mathematical definitions and calculations devoid of physical context.}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, leftmargin=*]
+    
+    \item \textbf{Pearson Correlation Coefficient ($r$)} \\
+    Consider the following abstract dataset of $n=5$ coordinate pairs: 
+    \[ X = \{ 1, 2, 3, 4, 5 \} \]
+    \[ Y = \{ 2, 3, 5, 4, 6 \} \]
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the sample means, $\bar{x}$ and $\bar{y}$.
+        \item Calculate the Sum of Squares for the spread of $X$ ($S_{xx}$), the spread of $Y$ ($S_{yy}$), and the covariance ($S_{xy}$).
+        \item Using your answers from above, calculate the Pearson correlation coefficient ($r$). Is this a strong or weak correlation?
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Simple Linear Regression} \\
+    Using the exact same dataset and the Sum of Squares values calculated in Q1:
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the gradient ($m$) of the least-squares line of best fit.
+        \item Calculate the y-intercept ($c$). 
+        \item Write down the final equation of the line in the form $\hat{y} = mx + c$.
+        \item Calculate the Coefficient of Determination ($R^2$). 
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Linearisation (Mapping)} \\
+    A mathematical model follows an exponential curve given by the equation:
+    \[ y = a e^{bx} \]
+    \begin{enumerate}[label=\arabic*.]
+        \item By applying the natural logarithm ($\ln$) to both sides, map this equation into a linear format ($\hat{Y} = mX + C$).
+        \item In this new linear space, what does the gradient ($m$) represent in terms of the original constants?
+        \item What does the y-intercept ($C$) represent in terms of the original constants?
+    \end{enumerate}
+
+\end{enumerate}
+
+\vspace{0.8cm}
+
+% -----------------------------------------------------------------------------
+% PART B
+% -----------------------------------------------------------------------------
+\subsection*{Part B: Exam style questions: Engineering Application}
+\textit{These questions test the exact same mathematical concepts as Part A, but applied to the Electrical Engineering scenarios discussed in the lecture.}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, leftmargin=*, start=4]
+
+    \item \textbf{Sensor Calibration \& Goodness of Fit} \\
+    An engineer is calibrating a pressure sensor. They apply known forces ($X$, in Newtons) and measure the output voltage ($Y$, in millivolts). Rather than providing the raw data, the calibration software outputs the following summary statistics for $n=10$ tests:
+    \[ \bar{x} = 20\text{ N}, \quad \bar{y} = 45\text{ mV} \]
+    \[ S_{xx} = 400, \quad S_{yy} = 100, \quad S_{xy} = 190 \]
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the Pearson correlation coefficient ($r$) for this sensor.
+        \item Calculate the Coefficient of Determination ($R^2$).
+        \item \textit{Engineering Interpretation:} Explain exactly what this $R^2$ value tells the engineer about the reliability of the pressure sensor's voltage output. 
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Predictive Modelling \& Tolerances} \\
+    Using the summary statistics from Q4, the engineer wants to build the linear regression model $\hat{y} = mx + c$ so the microcontroller can predict the voltage automatically.
+    \begin{enumerate}[label=\arabic*.]
+        \item Calculate the slope ($m$) and intercept ($c$) of the regression line.
+        \item \textit{Terminology:} What is the physical meaning of the gradient ($m$) in this context? (Hint: Use the term \textit{Sensitivity}).
+        \item \textit{Terminology:} What is the physical meaning of the intercept ($c$) in this context? (Hint: Think about what happens when $0\text{ N}$ of force is applied).
+        \item If a force of $25\text{ N}$ is applied to the sensor, what voltage drop should the system expect?
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Non-Linearity in Circuits (Capacitor Discharge)} \\
+    You are measuring the voltage ($V$) across a discharging capacitor over time ($t$, in seconds). The physical law governing this is intrinsically non-linear:
+    \[ V = V_0 e^{-\frac{t}{\tau}} \]
+    Where $V_0$ is the initial voltage and $\tau$ is the RC time constant of the circuit. 
+    
+    You have a raw dataset of times and voltages. You cannot fit a straight line to this raw data.
+    \begin{enumerate}[label=\arabic*.]
+        \item How must you transform your raw data table columns (Time and Voltage) before running a linear regression analysis in Python (\texttt{scipy.stats})?
+        \item After transforming the data and calculating the line of best fit, Python tells you the gradient (slope) of the line is $-0.2$. What is the RC time constant ($\tau$) of this circuit?
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item \textbf{Correlation vs. Causation} \\
+    A data centre manager notices a strong positive correlation ($r = 0.85$) between the speed of the server cooling fans (RPM) and the number of network packet routing errors occurring per minute. They conclude that the vibration from the high-speed fans is causing the network cables to drop packets, and propose limiting the maximum fan speed to fix the network.
+    \begin{enumerate}[label=\arabic*.]
+        \item Identify the hidden \lq lurking variable\rq\ that is actually causing both the fans to speed up and the network errors to increase simultaneously. 
+        \item What catastrophic engineering failure will likely occur if the manager implements their proposed solution?
+    \end{enumerate}
+
+\end{enumerate}

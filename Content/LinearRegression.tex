@@ -14,8 +14,19 @@
 
 % Section 2: Correlation
 \section{Correlation}
-\begin{frame}{Correlation: Measuring the Relationship}
+
+\only<article>{
+    In engineering, plotting experimental data on a scatter plot is an excellent first step to see if two variables interact. However, relying purely on visual inspection is subjective. Before we invest time into building complex predictive regression models, we need a way to mathematically prove both the existence and the strength of a trend---for example, linking the thermal expansion of a material to ambient temperature, or tracking signal attenuation over a distance. This is exactly what mathematical correlation allows us to do.
+}
+
+\subsection{Pearson Correlation Coefficient}
     Before we can predict a value, we need to know if a relationship exists, and how strong it is.
+\only<article>{To completely remove the subjectivity of guessing with our eyes, we use a standardised metric. Developed by Karl Pearson in the late 19th century (building upon earlier work by Sir Francis Galton), the Pearson Correlation Coefficient is the standard statistical tool used to quantify the linear dependence between two variables, condensing that relationship into a single, dimensionless number.
+}
+
+
+
+\begin{frame}{Correlation: Measuring the Relationship}
     
     \begin{block}{Definition (Pearson Correlation Coefficient, $r$)}
         Correlation measures the strength and direction of the linear relationship between two continuous variables, $X$ and $Y$. 
@@ -29,19 +40,20 @@
     \end{itemize}
 \end{frame}
 
+\subsubsection{Engineering Example: Temperature vs. Voltage}
 \begin{frame}{Engineering Example: Temperature vs. Voltage}
     \textbf{Scenario:} We are testing a thermistor. We measure the ambient temperature ($X$) in $^\circ$C and the resulting voltage drop ($Y$) in volts. \vspace{0.5cm}
-    
     \begin{itemize}
         \item If our calculated correlation is $r = 0.92$, we have a \textbf{very strong positive correlation}.
         \item \textbf{Conclusion:} We can confidently say that as ambient temperature rises, the voltage drop reliably rises alongside it.
     \end{itemize}
 \end{frame}
 
+\subsection{Calculating the Pearson Correlation Coefficient ($r$)}
 \begin{frame}{Calculating the Pearson Correlation Coefficient ($r$)}
    \only<article>{ To calculate the exact correlation coefficient by hand, we use \lq Sum of Squares\rq\ formulas. These measure the individual spread of each variable and how they vary together.}
     
-    \begin{block}{1. The Sum of Squares}
+    \begin{block}{\only<presentation>{1. }The Sum of Squares}
         \begin{itemize}
             \item Spread of $X$: $$S_{xx} = \sum x^2 - n\bar{x}^2$$
             \item Spread of $Y$: $$S_{yy} = \sum y^2 - n\bar{y}^2$$
@@ -49,7 +61,7 @@
         \end{itemize}
     \end{block}
     
-    \begin{block}{2. The Pearson Formula}
+    \begin{block}{\only<presentation>{2. }The Pearson Formula}
       \only<article>{The correlation coefficient $r$ is the ratio of the covariance ($S_{xy}$) to the square root of the individual variances:}
         $$r = \frac{S_{xy}}{\sqrt{S_{xx} S_{yy}}}$$
     \end{block}
@@ -57,6 +69,7 @@
 \only<article>{The denominator mathematically normalises the value, guaranteeing the final result is strictly bounded between -1 and 1.}
 \end{frame}
 
+\subsection{Worked Example: Pearson Correlation ($r$)}
 \begin{frame}{Worked Example: Pearson Correlation ($r$)}
     \begin{example}{The Scenario}
         An engineer tests a new thermistor, measuring ambient temperature ($X$) in $^{\circ}$C and the resulting voltage drop ($Y$) in Volts for $n = 5$ data points.
@@ -81,10 +94,10 @@
 \end{frame}
 
 \begin{frame}{Worked Example: Means and Sum of Squares}
-    \begin{block}{Step 2: Calculate the Averages ($n=5$)}
+    \begin{solutioncont}{Step 2: Calculate the Averages ($n=5$)}
         $$\bar{x} = 200 / 5 = 40$$
         $$\bar{y} = 6.5 / 5 = 1.3$$
-    \end{block}
+    \end{solutioncont}
 \end{frame}
 \begin{frame}
     \begin{solutioncont}{Step 3: Calculate the Sum of Squares}
@@ -113,16 +126,17 @@
     
     \begin{solutioncont}{Step 5: Engineering Conclusion}
         Our calculated correlation is \textbf{$r = 0.976$}. 
-        \vspace{0.3cm}
+     \only<presentation>{   \vspace{0.3cm}}
         
         Because this value is extremely close to \textbf{1}, we have mathematically proven a \textbf{very strong positive linear correlation}. As the ambient temperature rises, the voltage drop reliably and predictably increases alongside it.
     \end{solutioncont}
 \end{frame}
 
+\subsection{Interpreting the Correlation Coefficient ($r$)}
 \begin{frame}{Interpreting the Correlation Coefficient ($r$)}
     \only<article>{The value of $r$ tells us two things: the \textbf{direction} and the \textbf{strength} of the linear relationship.
     
-    \begin{block}{1. Direction}
+    \begin{block}{Direction}
         \begin{itemize}
             \item \textbf{Positive ($r > 0$):} As $X$ increases, $Y$ increases (e.g., Temp vs. Voltage).
             \item \textbf{Negative ($r < 0$):} As $X$ increases, $Y$ decreases (e.g., Battery \% vs. Time).
@@ -145,13 +159,14 @@
         \end{tabular}
     \end{block}
 
-    \begin{alertblock}{The Golden Rule}
-        \centering
-        \textbf{Correlation does not imply Causation!} \\
-        \small Just because two signals are mathematically linked doesn't mean one causes the other.
-    \end{alertblock}
+    \begin{block}{The Golden Rule}
+        \only<presentation>{\centering}
+        \textbf{Correlation does not imply Causation!} \only<presentation>{\\
+        \small }Just because two signals are mathematically linked doesn't mean one causes the other.
+    \end{block}
 \end{frame}
 
+\subsection{Correlation vs. Causation: The Classic Trap}
 \begin{frame}[allowframebreaks]{Correlation vs. Causation: The Classic Trap}
     \begin{block}{The \lq Storks and Babies\rq\ Paradox}
         Historical data from several European countries shows a \textbf{strong positive correlation} between the number of storks nesting in a town and the number of human babies born there.
@@ -174,6 +189,8 @@
 
 % Section 3: Regression
 
+\section{Simple Linear Regression}
+\subsection{Introduction}
 \begin{frame}{Simple Linear Regression}
     Correlation tells us if a relationship exists, but \textbf{Regression} gives us the mathematical equation to actually make predictions.
     
@@ -189,6 +206,7 @@
     \end{block}
 \end{frame}
 
+\subsection{The Least-Squares Method}
 \begin{frame}{The Least-Squares Method}
     To find the perfect slope and intercept by hand, we reuse the exact same \lq Sum of Squares\rq\ variables we calculated for the correlation coefficient.
     
@@ -203,6 +221,7 @@
     \end{block}
 \end{frame}
 
+\subsection{Worked Example: Thermistor Regression}
 \begin{frame}{Worked Example: Thermistor Regression (Part 1)}
     \begin{block}{The Scenario}
         Let's build the prediction model for our thermistor. We already calculated the following summary statistics from our $n=5$ data points:
@@ -233,7 +252,8 @@
     \end{block}
 \end{frame}
 
-\begin{frame}{Full Linear Regression Example}
+\subsection{Complete Linear Regression Example}
+\begin{frame}{Complete Linear Regression Example}
     \begin{example}[Load Cell Calibration]
         An engineer calibrates a load cell by placing 10 known masses ($X$, kg) on the sensor and measuring the output voltage ($Y$, mV). Calculate the linear regression model $\hat{y} = mx + c$.
         
@@ -339,6 +359,7 @@
     \end{solutioncont}
 \end{frame}
 
+\subsection{Measuring the \lq Goodness of Fit\rq\ ($R^2$)}
 \begin{frame}{Measuring the \lq Goodness of Fit\rq\ ($R^2$)}
     \begin{block}{The Coefficient of Determination}
         The \textbf{Coefficient of Determination ($R^2$)} tells us exactly how much of the variation in our output is explained by our model.
@@ -358,6 +379,7 @@
     \end{alertblock}
 \end{frame}
 
+\subsection{$r$ vs. $R^2$: Why the Notation Change?}
 \begin{frame}{$r$ vs. $R^2$: Why the Notation Change?}
     \begin{block}{Lowercase $r$: Simple Bivariate}
        \only<article>{Used specifically for \textbf{Simple Linear Correlation}.} It measures the mathematical \lq raw connection\rq\ between exactly two variables (one $X$ and one $Y$).
@@ -450,6 +472,7 @@
         \end{tikzpicture}
 \end{frame}
 
+\subsection{Engineering Example: Sensor Calibration}
 \begin{frame}{Engineering Example: Sensor Calibration}
 Once we have the fit we can use it to predict values. 
 \begin{example}
@@ -470,11 +493,13 @@ Once we have the fit we can use it to predict values.
     \textit{Note: This allows microcontrollers to translate raw voltage back into temperature readings automatically!}
 \end{frame}
 
+\section{Beyond Linear Regression: Non-Linearity}
+\subsection{Introduction}
 \begin{frame}{Beyond Linear Regression: Non-Linearity}
     \begin{block}{The Engineering Reality}
         Many physical systems are \textbf{intrinsically non-linear} (e.g., cooling, radioactive decay, or stress-strain). A straight line $\hat{y} = mx + c$ in \lq raw space\rq\ would result in a very poor fit and a low $r$ value.
     \end{block}
-
+\subsection{Lets Map}
     \begin{block}{The Mapping Strategy}
         Instead of using complex non-linear solvers, we can often \textbf{\lq map\rq} our data into a linear space. 
         \begin{enumerate}
@@ -485,6 +510,7 @@ Once we have the fit we can use it to predict values.
     \end{block}
 \end{frame}
 
+\subsubsection{Case 1: The Exponential Model}
 \begin{frame}{Case 1: The Exponential Model}
     \begin{example}[Newton's Law of Cooling / Growth]
         Consider the model: $y = ae^{bx}$
@@ -495,7 +521,7 @@ Once we have the fit we can use it to predict values.
         $$\ln(y) = \ln(a \cdot e^{bx})$$
         $$\ln(y) = \ln(a) + bx$$
         
-        \vspace{0.2cm}
+       \only<presentation>{ \vspace{0.2cm}}
         \textbf{The Linear Mapping:}
         \begin{itemize}
             \item New \lq Y\rq\ variable = $\ln(y)$
@@ -506,6 +532,7 @@ Once we have the fit we can use it to predict values.
     \end{solution}
 \end{frame}
 
+\subsubsection{Case 2: The Power Law Model}
 \begin{frame}{Case 2: The Power Law Model}
     \begin{example}[Structural Scaling / Fluid Dynamics]
         Consider the model: $y = ax^b$
@@ -554,6 +581,7 @@ Once we have the fit we can use it to predict values.
     \end{alertblock}
 \end{frame}
 
+\subsection{Full Non-Linear Regression (NLLS)}
 \begin{frame}{Full Non-Linear Regression (NLLS)}
     \begin{block}{What is \lq True\rq\ Non-Linear Regression?}
         \only<article>{Instead of mapping data to fit a straight line, }\textbf{Non-Linear Least Squares (NLLS)} fits a curved model directly to the raw data. There is no closed-form solution ($S_{xx}$)\only<article>{; instead, a computer uses iterative calculus.}
@@ -575,8 +603,8 @@ Once we have the fit we can use it to predict values.
     \end{itemize}
 \end{frame}
 
+\section{Now to Python}
 \begin{frame}[fragile]
-
 \only<article>{Engineers rarely calculate regressions by hand. Instead, we use powerful libraries like \texttt{SciPy} in Python to instantly compute the line of best fit, correlation, and residuals.}
 
 
@@ -591,7 +619,7 @@ Once we have the fit we can use it to predict values.
 \only<article>{
     \subsubsection*{Python Function Breakdown: \texttt{scipy.stats.linregress}}
     
-    When we pass our two arrays into the \texttt{linregress(x, y)} function, it calculates the least-squares regression and returns an object containing five highly useful statistical values. In our code, we "unpack" these values into five separate variables:
+    When we pass our two arrays into the \texttt{linregress(x, y)} function, it calculates the least-squares regression and returns an object containing five highly useful statistical values. In our code, we \lq unpack\rq these values into five separate variables:
     
     \begin{description}
         \item[\texttt{slope}:] The gradient of the regression line ($m$). In engineering, this represents the \textbf{sensitivity} of the system (e.g., how much the voltage changes per kilogram of mass added).
@@ -609,7 +637,7 @@ Once we have the fit we can use it to predict values.
     \end{description}
 }
 
-
+\section{Summary}
 \begin{frame}{Summary: Linear Regression \& Correlation}
     \begin{block}{1. Correlation ($r$)}
         Measures the strength and direction of a linear relationship between two variables. Always remember: \textbf{Correlation does not imply causation!}
@@ -627,6 +655,12 @@ Once we have the fit we can use it to predict values.
         Many physical laws (exponential, power) are non-linear. By using mathematical transformations (like $\ln$ or $1/x$), we can map them into a linear space to easily extract their physical constants.
     \end{block}
 \end{frame}
+
+\only<article>{
+\section{Exercise Questions}
+\input{Content/LinearRegression_ExerciseQuestions.tex}
+}
+
 
 % Section 4: Inference
 %\section{Statistical Inference}
