@@ -94,11 +94,21 @@ We moved from descriptive statistics to predicting the future using probability.
 
 \begin{frame}{The \lq Exact Point\rq\ Paradox}
     \begin{example}[The infinitely precise resistor]
-        Suppose you have a resistor that is supposedly exactly $100\,\Omega$. What is the probability that its true, physical resistance is \textit{exactly} $100.000000000\dots\,\Omega$ with infinite precision?
+        \begin{minipage}{0.75\textwidth}
+            Suppose you have a resistor that is supposedly exactly $100\,\Omega$. What is the probability that its true, physical resistance is \textit{exactly} $100.000000000\dots\,\Omega$ with infinite precision?
+        \end{minipage}%
+        \hfill
+        \begin{minipage}{0.2\textwidth}
+            \centering
+            \qrcode[height=1.2cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to play!}
+        \end{minipage}
     \end{example}
 
     \pause 
-       \begin{solution}
+    \begin{solution}
+    \only<presentation>{\small}
         Mathematically, a single point has a width of zero. Therefore, the area under the curve at exactly one point is zero!
         \[ P(X = 100) = \int_{100}^{100} f(x) \,dx = \mathbf{0} \]
         
@@ -156,27 +166,46 @@ We moved from descriptive statistics to predicting the future using probability.
 \end{frame}
 
 \begin{frame}{Worked Example: A Custom Continuous Distribution}
+    
+    % 1. Safely define the width variable!
+    \def\boxwidth{\textwidth} % Default width for handout/article modes
+    \mode<beamer>{\def\boxwidth{0.85\textwidth}} % Overwrite it for the projector
+    
     \begin{example}[Sensor Calibration Error]
-        An engineer models the calibration error $X$ (in millivolts) of a new prototype thermal sensor using the following Probability Density Function (PDF):
-        \[
-        f(x) = \begin{cases} 
-        cx & \text{for } 0 \leq x \leq 2 \\
-        0 & \text{otherwise}
-        \end{cases}
-        \]
-        
-        \textbf{Questions:}
-        \begin{enumerate}
-            \item Find the constant $c$ that makes this a valid PDF.
-            \item Determine the Cumulative Distribution Function (CDF), $F(x)$.
-            \item What is the probability that the error is less than $1\text{ mV}$?
-            \item Calculate the expected (mean) error, $E(X)$.
-            \item Calculate the variance (spread).
-        \end{enumerate}
+        % 2. Use our clean variable here
+        \begin{minipage}{\boxwidth}
+            \only<presentation>{\footnotesize}
+            An engineer models the calibration error $X$ (in millivolts) of a new prototype thermal sensor using the following Probability Density Function (PDF):
+            \[
+            f(x) = \begin{cases} 
+            cx & \text{for } 0 \leq x \leq 2 \\
+            0 & \text{otherwise}
+            \end{cases}
+            \]
+            
+            \textbf{Questions:}
+            \begin{enumerate}
+                \item Find the constant $c$ that makes this a valid PDF.
+                \item Determine the Cumulative Distribution Function (CDF), $F(x)$.
+                \item What is the probability that the error is less than $1\text{ mV}$?
+                \item Calculate the expected (mean) error, $E(X)$.
+                \item Calculate the variance (spread).
+            \end{enumerate}
+        \end{minipage}%
+        % 3. The QR code safely appears ONLY during the live presentation
+        \only<beamer>{%
+        \hfill
+        \begin{minipage}{0.1\textwidth}
+            \centering
+            \qrcode[height=1.2cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to play!}
+        \end{minipage}%
+        }
     \end{example}
 \end{frame}
 
-\begin{frame}{Solution: A Custom Continuous Distribution (1/4)}
+\begin{frame}{Solution: A Custom Continuous Distribution (1/5)}
     \begin{solution}
         \textbf{1. Find the constant $c$:} \\
         The total area under the PDF must equal exactly 1.
@@ -189,7 +218,7 @@ We moved from descriptive statistics to predicting the future using probability.
     \end{solution}
 \end{frame}
 
-\begin{frame}{Solution: A Custom Continuous Distribution (2/4)}
+\begin{frame}{Solution: A Custom Continuous Distribution (2/5)}
     \begin{solutioncont}
         \textbf{2. Determine the CDF, $F(x)$:} \\
         The CDF accumulates area from the lower bound ($0$) up to an arbitrary point $x$. We integrate using a dummy variable $t$:
@@ -201,7 +230,7 @@ We moved from descriptive statistics to predicting the future using probability.
     \end{solutioncont}
 \end{frame}
 
-\begin{frame}{Solution: A Custom Continuous Distribution (3/4)}
+\begin{frame}{Solution: A Custom Continuous Distribution (3/5)}
     \begin{solutioncont}
         \textbf{3. Probability the error is less than $1\text{ mV}$ ($P(X < 1)$):} \\
         Because we already found the CDF, we don't need to integrate again! We simply plug $1$ into $F(x)$:
@@ -209,7 +238,7 @@ We moved from descriptive statistics to predicting the future using probability.
     \end{solutioncont}
 \end{frame}
 
-\begin{frame}{Solution: A Custom Continuous Distribution (4/4)}
+\begin{frame}{Solution: A Custom Continuous Distribution (4/5)}
     \begin{solutioncont}
         \textbf{4. Expected Value (Mean), $E(X)$:} \\
         For continuous variables, the sum becomes an integral: $E(X) = \int x f(x) \dd x$.
@@ -288,6 +317,7 @@ We moved from descriptive statistics to predicting the future using probability.
 \end{frame}
 
 \begin{frame}{The Equation of the Normal Curve}
+\only<beamer>{\small}
     The bell shape we just saw is not just a rough sketch; it is defined by a very specific, and slightly intimidating, mathematical formula.
 
     \begin{definition}[Normal Probability Density Function]
@@ -296,13 +326,20 @@ We moved from descriptive statistics to predicting the future using probability.
         \textit{for any real number $x$ ($-\infty < x < \infty$).}
     \end{definition}
     
-\begin{example}{Question: What is the CDF for the normal curve?}
+    \begin{example}{Question: What is the CDF for the normal curve?}
         How do we integrate the PDF to get the CDF for the normal curve?
     \end{example}
 
-    \only<presentation>{\pause \vspace{0.2cm}}
 
+    % Safely displays the QR code at the bottom of the slide ONLY on the projector
+    \only<beamer>{
 
+        \begin{center}
+            \qrcode[height=0.7cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to answer!}
+        \end{center}
+    }
 \end{frame}
 
 \begin{frame}
@@ -449,7 +486,7 @@ can \emph{only be done numerically}
     Z-scores aren't just an old trick for using lookup tables; they are the ultimate engineering tool for comparing different systems!
 
     \vspace{0.2cm}
-    \begin{example}[Quality Control on Two Lines]
+\begin{example}[Quality Control on Two Lines]
         You are managing two different manufacturing lines.
         \begin{itemize}
             \item \textbf{Line A (Resistors):} $\mu = 1000\,\Omega$, $\sigma = 20\,\Omega$.
@@ -464,9 +501,18 @@ can \emph{only be done numerically}
         \end{itemize}
         
         \structure{Question:} Which of these two components is more \lq unusual\rq\ (i.e., relatively further from its design specification)?
+            \only<beamer>{
+        \begin{center}
+            \qrcode[height=0.7cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to answer!}
+        \end{center}
+    }
     \end{example}
+    \end{frame}
+ 
+ \begin{frame}
 
-    \framebreak
     \begin{solution}
     	\small
         We cannot compare Ohms to Microfarads directly. We must convert both to dimensionless (unitless) Z-scores.
@@ -530,6 +576,17 @@ can \emph{only be done numerically}
             \item The probability that a resistor is \textbf{less than} $970\,\Omega$.
         \end{enumerate}
     \end{example}
+
+    \only<beamer>{\pause \vspace{0.2cm}}
+
+    % Safely displays the QR code at the bottom of the slide ONLY on the projector
+    \only<beamer>{
+        \begin{center}
+            \qrcode[height=1.2cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to answer!}
+        \end{center}
+    }
 \end{frame}
 
 \begin{frame}{Solution: Using the Z-Table (1/2)}
@@ -603,6 +660,16 @@ can \emph{only be done numerically}
             \item If the battery is considered \lq defective\rq\ if it falls outside of the $8.7\text{V}$ to $9.3\text{V}$ range, what is the defect rate?
         \end{enumerate}
     \end{example}
+
+    % Safely groups the pause, spacing, and QR code to ONLY appear on the projector
+    \only<beamer>{
+        \pause 
+        \begin{center}
+            \qrcode[height=1cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to answer!}
+        \end{center}
+    }
 \end{frame}
 
 \begin{frame}{Solution: The Empirical Rule}
@@ -700,7 +767,16 @@ can \emph{only be done numerically}
         Comment on the how your would do the exact calculation?
     \end{example}
 
-    \pause
+    % Safely groups the pause, spacing, and QR code to ONLY appear on the projector
+    \only<beamer>{
+        \vspace{0.2cm}
+        \begin{center}
+            \qrcode[height=1.2cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to answer!}
+        \end{center}
+    }
+
     \begin{solution}
         \textbf{Step 1: Check the rules and find the parameters.}
         \begin{itemize}
@@ -830,7 +906,16 @@ can \emph{only be done numerically}
         Comment of how you would do the exact calculation?
     \end{example}
 
-    \pause
+    % Safely displays the QR code on the projector without breaking the framebreaks!
+    \only<beamer>{
+        \vspace{0.2cm}
+        \begin{center}
+            \qrcode[height=1.2cm]{https://www.menti.com/al46dc9t7s3m} \\
+            \vspace{0.1cm}
+            \scriptsize \textbf{Scan to answer!}
+        \end{center}
+    }
+
     \begin{solution}
         \textbf{Step 1: Check the rules and find the parameters.}
         \begin{itemize}
@@ -845,8 +930,7 @@ can \emph{only be done numerically}
         We want $P(X > 120)$.
         \[ Z = \frac{X - \mu}{\sigma} = \frac{120 - 100}{10} = \frac{20}{10} = \mathbf{2.00} \]
         
-       \end{solution}
-
+    \end{solution}
 \end{frame}
 
 \begin{frame}
