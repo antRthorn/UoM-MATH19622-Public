@@ -1,4 +1,37 @@
 \part{Linear Regression}
+
+\only<presentation>{\againframe{RecapDescriptiveStatistics}
+\againframe{RecapProbabilityFundamentals}
+\againframe{RecapDiscreteDistributions}
+
+\begin{frame}[allowframebreaks]{Recap: Continuous Probability Distributions}
+    Previously, we transitioned from counting discrete events to measuring continuous physical signals.
+
+    \textbf{1. The Probability Density Function (PDF)}
+    \begin{itemize}
+        \item \textbf{Probability is Area:} $P(a \leq X \leq b) = \int_{a}^{b} f(x) \,dx$.
+        \item \textbf{The \lq Exact Point\rq\ Paradox:} The probability of measuring an exact, infinitely precise value is always zero.
+    \end{itemize}
+
+    \textbf{2. The Normal Curve \& Standardisation}
+    \begin{itemize}
+        \item \textbf{The Bell Curve:} Symmetrical, defined entirely by mean ($\mu$) and variance ($\sigma^2$).
+        \item \textbf{Z-Scores:} Unitless values ($Z = \frac{X - \mu}{\sigma}$) used to compare different systems.
+        \item \textbf{The Empirical Rule:} 68\%, 95\%, and 99.7\% fall within $1\sigma$, $2\sigma$, and $3\sigma$.
+    \end{itemize}
+
+    \textbf{3. The Grand Convergence}
+    \begin{itemize}
+        \item At large scales, discrete models (Binomial/Poisson) approximate the continuous Normal curve.
+    \end{itemize}
+
+    \begin{alertblock}{The Transition}
+        We have only modelled \textbf{single variables} in isolation. Next, we learn to measure relationships between \textbf{two variables} using Linear Regression.
+    \end{alertblock}
+\end{frame}
+
+}
+
 % Section 1: Introduction
 \section{Introduction}
 \begin{frame}{From Isolation to Interaction}
